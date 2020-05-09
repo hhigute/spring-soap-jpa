@@ -1,0 +1,87 @@
+<xs:schema 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:tns="http://h3b.com/investment/webservice"
+			targetNamespace="http://h3b.com/investment/webservice" 
+			elementFormDefault="qualified">
+  
+ 
+ 	<xs:element name="createBccIndexRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bccIndex" type="tns:bccIndex"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createBccIndexResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceMessage" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="updateBccIndexRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bccIndex" type="tns:bccIndex"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateBccIndexResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceMessage" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="listBccIndexRequest"/>
+    <xs:element name="listBccIndexResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bccIndex" type="tns:bccIndex" maxOccurs="unbounded"/>
+            </xs:sequence> 
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="getBccIndexRequest">
+    <xs:complexType>
+            <xs:sequence>
+                <xs:element name="indexCode" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getBccIndexResponse" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bccIndex" type="tns:bccIndex"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+   
+    <xs:complexType name="bccIndex">
+        <xs:sequence>
+            <xs:element name="code" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="variation" type="tns:variation"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="variation">
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>
